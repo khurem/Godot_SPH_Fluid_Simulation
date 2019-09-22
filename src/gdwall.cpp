@@ -17,13 +17,11 @@ GDWall::~GDWall() {
 }
 
 void GDWall::_init() {
-    // initialize any variables here
     normal = Vector3(0.0,0.0,0.0);
 }
 
 
-void GDWall::_process(float delta) {
-    
+void GDWall::_process(float delta) {  
 }
 
 Vector3 GDWall::_get_normal(){
