@@ -42,7 +42,6 @@ namespace godot {
         void _process(float delta);
         void _bounce_ball(Vector3 N);
         Vector3 _get_velocity();
-        Vector3 _other_sphere_normal(GDSpatial *other);
     };
 }
 
