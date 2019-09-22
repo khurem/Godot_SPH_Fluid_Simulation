@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="SpotLight" type="SpotLight" parent="."]
+light_energy = 10.0
+light_indirect_energy = 16.0
+light_specular = 0.49
