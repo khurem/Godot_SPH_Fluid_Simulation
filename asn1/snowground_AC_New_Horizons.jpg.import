@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/purple.png-993a3fae7325db95475822da4ec84ea6.s3tc.stex"
-path.etc2="res://.import/purple.png-993a3fae7325db95475822da4ec84ea6.etc2.stex"
+path.s3tc="res://.import/snowground_AC_New_Horizons.jpg-77ff353d4fa985cd43d91981c6062467.s3tc.stex"
+path.etc2="res://.import/snowground_AC_New_Horizons.jpg-77ff353d4fa985cd43d91981c6062467.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://purple.png"
-dest_files=[ "res://.import/purple.png-993a3fae7325db95475822da4ec84ea6.s3tc.stex", "res://.import/purple.png-993a3fae7325db95475822da4ec84ea6.etc2.stex" ]
+source_file="res://snowground_AC_New_Horizons.jpg"
+dest_files=[ "res://.import/snowground_AC_New_Horizons.jpg-77ff353d4fa985cd43d91981c6062467.s3tc.stex", "res://.import/snowground_AC_New_Horizons.jpg-77ff353d4fa985cd43d91981c6062467.etc2.stex" ]
 
 [params]
 

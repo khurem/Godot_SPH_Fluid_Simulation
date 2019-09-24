@@ -1,0 +1,31 @@
+Name: Khurem Dehri
+EID: kd2374
+
+Hello and welcome to the project description. 
+
+1. FEATURES IMPLEMENTED
+    a. Basic Requirements 
+        Cubic room w/ 6 walls ----------------------------IMPLEMENTED
+        3 textured spherical balls w/ motion -------------IMPLEMENTED
+        GDNative Script used for balls and wall normals---IMPLEMENTED
+    b. Extra Credit
+        None
+
+2. ADDITIONAL INFORMATION
+    a. Lighting
+        -One Directional Light is added in the scene (top-left from camera) that simulates the sun
+        -One OmniLight is also in the scene in the bottom
+        -One PointLight on the wall on the right hand side of the camera
+    b. Scripts
+        -If for some unholy reason the scripts are not attached to the nodes like they should be, here's where they belong:
+            -asn1.gdns attaches to any and all spheres(the Spatial nodes of the spheres)
+            -gdwall.gdns attaches to the Spatial nodes at the root of all walls
+
+3. HOW TO USE
+    a. There is a linux executable you can find inside the asn1 folder titled: "assignment1_exec" 
+    b. Otherwise, in Godot you can pull up Main.tscn and run that to view the same thing
+
+        
+
+
+    
