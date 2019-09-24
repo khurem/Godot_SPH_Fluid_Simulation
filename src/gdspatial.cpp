@@ -29,28 +29,38 @@ GDSpatial::~GDSpatial() {
 }
 
 void GDSpatial::_init() {
+    //Establishes the random speed/direction that each ball will be going towards
+    //Using std random generation, it seeds based on the nanoseconds you provide
     bounce = false;
+    random::mt19937 rng(current_time_nanoseconds());
+    random::uniform_int_distribution<> speed(min_spd,max_spd);
+    random::uniform_int_distribution<> direction(min_dir,max_dir);
+    spd = (float(speed(rng)));
+    x_dir = (float(direction(rng)))/100.0f;
+    y_dir = (float(direction(rng)))/100.0f;
+    z_dir = (float(direction(rng)))/100.0f;
+    x_sign = x_dir < 0 ? -1.0 : 1.0;
+    y_sign = y_dir < 0 ? -1.0 : 1.0;
+    z_sign = z_dir < 0 ? -1.0 : 1.0;
+    
 
 }
 
 void GDSpatial::_ready() {
-
-    Vector3 cur = this->get_global_transform().get_origin();
-    unsigned int dice_rolls = 12;
-    random::mt19937 rng(current_time_nanoseconds());
-    random::uniform_int_distribution<> speed(min_spd,max_spd);
-    x_spd = (float(speed(rng)))/100.0f;
-    y_spd = (float(speed(rng)))/100.0f;
-    z_spd = (float(speed(rng)))/100.0f;
+    
     godot::Node *child = this->get_child(0);
     godot::Area *area = godot::Object::cast_to<godot::Area>(child);
+    //Connect signal from child area node to spatial(current)
     area->connect("area_entered", this, "_on_area_entered");
 }
 
 void GDSpatial::_process(float delta) {
+    //Boolean bounce was included in case you want to commit to other actions alongside bouncin later on
     if(!bounce){
+        //Grab current position and update based on the velocity you want to add
         Vector3 cur_pos = this->get_transform().get_origin();
-        Vector3 updated_pos = Vector3(cur_pos[0] + x_spd, cur_pos[1] + y_spd, cur_pos[2] + z_spd);
+        Vector3 updated_pos = cur_pos + (Vector3(x_dir, y_dir, z_dir) * (spd * 0.1));
+        //Position change is clamped to prevent balls from exiting the cube
         Vector3 new_pos = Vector3
         (std::max(lower, std::min(updated_pos[0], upper)), std::max(lower, std::min(updated_pos[1], upper)), std::max(lower, std::min(updated_pos[2], upper)));
         set_translation(new_pos);
@@ -60,6 +70,7 @@ void GDSpatial::_process(float delta) {
 
 void GDSpatial::_on_area_entered(Area *test) {
     bounce = true;
+    //Grab collision object based on if it's a sphere or wall and then compute the bounce as needed
     int collider = test->get_child_count() == 2 ? sphere : wall;
     if(collider == wall){
         godot::GDWall *testw = godot::Object::cast_to<godot::GDWall>(test->get_parent());
@@ -73,11 +84,12 @@ void GDSpatial::_on_area_entered(Area *test) {
 }
 
 void GDSpatial::_bounce_ball(Vector3 N){
-    Vector3 I = Vector3(x_spd, y_spd, z_spd);
+    //Calculate new direction post-bounce
+    Vector3 I = Vector3(x_dir, y_dir, z_dir);
     Vector3 R = I - (2.0 *N) *  (N.dot(I));
-    this->x_spd = R[0];
-    this->y_spd = R[1];
-    this->z_spd = R[2];
+    this->x_dir = R[0];
+    this->y_dir = R[1];
+    this->z_dir = R[2];
 }
 
 

@@ -14,8 +14,10 @@
 namespace godot {
 
     enum {sphere, wall};
-    const unsigned int max_spd = 100;
-    const unsigned int min_spd = -100;
+    const unsigned int max_spd = 10;
+    const unsigned int min_spd = -10;
+    const unsigned int max_dir = 100;
+    const unsigned int min_dir = -100;
     const real_t upper = 15.0;
     const real_t lower = -15.0;
 
@@ -23,11 +25,14 @@ namespace godot {
         GODOT_CLASS(GDSpatial, Spatial)
 
     private:
-        float time_passed;
         bool bounce;
-        float x_spd;
-        float y_spd;
-        float z_spd;
+        float spd;
+        float x_dir;
+        float y_dir;
+        float z_dir;
+        float x_sign;
+        float y_sign;
+        float z_sign;
         
 
     public:

@@ -22,8 +22,12 @@ Hello and welcome to the project description.
             -gdwall.gdns attaches to the Spatial nodes at the root of all walls
 
 3. HOW TO USE
-    a. There is a linux executable you can find inside the asn1 folder titled: "assignment1_exec" 
+    a. There is a linux executable you can find inside the Project folder titled: "assignment1_exec" 
     b. Otherwise, in Godot you can pull up Main.tscn and run that to view the same thing
+
+4. C++ FILES FOR SCRIPTS
+    a. GDSpatial.cpp and GDSpatial.h for the spheres/balls
+    b. GDWall.cpp and GDWall.h for the walls(pretty much just the normals)
 
         
 

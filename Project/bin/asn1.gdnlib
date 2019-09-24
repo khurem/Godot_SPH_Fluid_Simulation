@@ -7,9 +7,9 @@ reloadable=false
 
 [entry]
 
-X11.64="res://bin/x11/libgdasn1.so"
-Windows.64="res://bin/win64/libgdasn1.dll"
-OSX.64="res://bin/osx/libgdasn1.dylib"
+X11.64="res://bin/x11/libgdProject.so"
+Windows.64="res://bin/win64/libgdProject.dll"
+OSX.64="res://bin/osx/libgdProject.dylib"
 
 [dependencies]
 
