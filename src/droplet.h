@@ -1,5 +1,5 @@
-#ifndef GDSPATIAL_H
-#define GDSPATIAL_H
+#ifndef DROPLET_H
+#define DROPLET
 
 #include <Godot.hpp>
 #include <Spatial.hpp>
@@ -21,8 +21,8 @@ namespace godot {
     const real_t upper = 15.0;
     const real_t lower = -15.0;
 
-    class GDSpatial : public Spatial {
-        GODOT_CLASS(GDSpatial, Spatial)
+    class Droplet : public Spatial {
+        GODOT_CLASS(Droplet, Spatial)
 
     private:
         bool bounce;
@@ -38,8 +38,8 @@ namespace godot {
     public:
         static void _register_methods();
 
-        GDSpatial();
-        ~GDSpatial();
+        Droplet();
+        ~Droplet();
 
         void _init(); // our initializer called by Godot
         void _ready();

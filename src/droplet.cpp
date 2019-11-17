@@ -1,4 +1,4 @@
-#include "gdspatial.h"
+#include "droplet.h"
 #include <ctime>
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/uniform_int_distribution.hpp>
@@ -14,21 +14,21 @@ int current_time_nanoseconds(){
     return tm.tv_nsec;
 }
 
-void GDSpatial::_register_methods() {
-    register_method("_ready", &GDSpatial::_ready);
-    register_method("_process", &GDSpatial::_process);
-    register_method("_on_area_entered", &GDSpatial::_on_area_entered);
-    register_method("_bounce_ball", &GDSpatial::_bounce_ball);
+void Droplet::_register_methods() {
+    register_method("_ready", &Droplet::_ready);
+    register_method("_process", &Droplet::_process);
+    register_method("_on_area_entered", &Droplet::_on_area_entered);
+    register_method("_bounce_ball", &Droplet::_bounce_ball);
 }
 
 
-GDSpatial::GDSpatial() {
+Droplet::Droplet() {
 }
 
-GDSpatial::~GDSpatial() {
+Droplet::~Droplet() {
 }
 
-void GDSpatial::_init() {
+void Droplet::_init() {
     //Establishes the random speed/direction that each ball will be going towards
     //Using std random generation, it seeds based on the nanoseconds you provide
     bounce = false;
@@ -46,7 +46,7 @@ void GDSpatial::_init() {
 
 }
 
-void GDSpatial::_ready() {
+void Droplet::_ready() {
     
     godot::Node *child = this->get_child(0);
     godot::Area *area = godot::Object::cast_to<godot::Area>(child);
@@ -54,7 +54,7 @@ void GDSpatial::_ready() {
     area->connect("area_entered", this, "_on_area_entered");
 }
 
-void GDSpatial::_process(float delta) {
+void Droplet::_process(float delta) {
     //Boolean bounce was included in case you want to commit to other actions alongside bouncin later on
     if(!bounce){
         //Grab current position and update based on the velocity you want to add
@@ -68,7 +68,7 @@ void GDSpatial::_process(float delta) {
 
 }
 
-void GDSpatial::_on_area_entered(Area *test) {
+void Droplet::_on_area_entered(Area *test) {
     bounce = true;
     //Grab collision object based on if it's a sphere or wall and then compute the bounce as needed
     int collider = test->get_child_count() == 2 ? sphere : wall;
@@ -76,14 +76,14 @@ void GDSpatial::_on_area_entered(Area *test) {
         godot::GDWall *testw = godot::Object::cast_to<godot::GDWall>(test->get_parent());
         _bounce_ball(testw->_get_normal());
     } else {
-        godot::GDSpatial *testw = godot::Object::cast_to<godot::GDSpatial>(test->get_parent());
+        godot::Droplet *testw = godot::Object::cast_to<godot::Droplet>(test->get_parent());
         _bounce_ball((this->get_transform().get_origin() - testw->get_transform().get_origin()).normalized());
     }
     bounce = false;
     
 }
 
-void GDSpatial::_bounce_ball(Vector3 N){
+void Droplet::_bounce_ball(Vector3 N){
     //Calculate new direction post-bounce
     Vector3 I = Vector3(x_dir, y_dir, z_dir);
     Vector3 R = I - (2.0 *N) *  (N.dot(I));
