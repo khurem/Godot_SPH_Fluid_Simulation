@@ -9,44 +9,42 @@
 #include <chrono>
 #include <SphereShape.hpp>
 #include <CollisionShape.hpp>
+#include <MeshInstance.hpp>
 #include <CollisionObject.hpp>
+#include <Mesh.hpp>
+#include <SphereMesh.hpp>
 
 namespace godot {
 
-    enum {sphere, wall};
-    const unsigned int max_spd = 10;
-    const unsigned int min_spd = -10;
-    const unsigned int max_dir = 100;
-    const unsigned int min_dir = -100;
-    const real_t upper = 15.0;
-    const real_t lower = -15.0;
+    
+    
 
     class Droplet : public Spatial {
         GODOT_CLASS(Droplet, Spatial)
 
     private:
-        bool bounce;
-        float spd;
-        float x_dir;
-        float y_dir;
-        float z_dir;
-        float x_sign;
-        float y_sign;
-        float z_sign;
+        const float init_density = 1.0f;
+        const float spacing = (1.0f/ 100.0f);
+        const float volume = powf(spacing, 3.0f) * 3.14f * (4.0f/3.0f);
+        const float mass = volume * init_density;
+        const float kernel_range = 1.25 * (spacing);
+        const float viscosity = 0.3f;
+        const float stiffness = 1.5f;
+        const float gravity = -9.8f;
         
 
     public:
         static void _register_methods();
+        Ref<SphereShape> droplet_collision;
+        Ref<SphereMesh> droplet_mesh;
 
         Droplet();
         ~Droplet();
 
         void _init(); // our initializer called by Godot
         void _ready();
-        void _on_area_entered(Area *test);
         void _process(float delta);
-        void _bounce_ball(Vector3 N);
-        Vector3 _get_velocity();
+       
     };
 }
 
