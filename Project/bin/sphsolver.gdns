@@ -3,6 +3,6 @@
 [ext_resource path="res://bin/sphsolver.gdnlib" type="GDNativeLibrary" id=1]
 
 [resource]
-resource_name = "droplet"
-class_name = "Droplet"
+resource_name = "sphsolver"
+class_name = "SPHSolver"
 library = ExtResource( 1 )

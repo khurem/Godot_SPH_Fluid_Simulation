@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 0.682353, 0.666667, 0.666667, 0.376471 )
+transmission_enabled = true
+transmission = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+
+[node name="Box" type="Spatial"]
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0.1, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="NegXWall" type="StaticBody" parent="."]
+transform = Transform( -0.1, 0, 0, 0, -10, -8.74228e-07, 0, -8.74228e-07, 10, -10, 10, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="NegXWall"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NegXWall"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="PosXWall" type="StaticBody" parent="."]
+transform = Transform( -0.1, 0, 0, 0, -10, -8.74228e-07, 0, -8.74228e-07, 10, 10, 10, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PosXWall"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="PosXWall"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="NegZWall" type="StaticBody" parent="."]
+transform = Transform( -10, 8.74228e-07, 0, -8.74228e-07, -10, -8.74228e-09, -7.64274e-14, -8.74228e-07, 0.1, 0, 10, -10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="NegZWall"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="NegZWall"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="PosZWall" type="StaticBody" parent="."]
+transform = Transform( -10, 8.74228e-07, 0, -8.74228e-07, -10, -8.74228e-09, -7.64274e-14, -8.74228e-07, 0.1, 0, 10, 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PosZWall"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="PosZWall"]
+mesh = SubResource( 3 )
+material/0 = null
