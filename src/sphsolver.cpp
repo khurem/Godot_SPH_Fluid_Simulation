@@ -9,6 +9,7 @@ using namespace godot;
 void SPHSolver::_register_methods() {
     register_method("_ready", &SPHSolver::_ready);
     register_method("_process", &SPHSolver::_process);
+    register_method("_create_neighborhood", &SPHSolver::_create_neighborhood);
 }
 
 
@@ -22,6 +23,7 @@ void SPHSolver::_init() {
     
     particles = new Array();
     spat_map = new Grid();
+    neighborhood = Array();
 
 }
 
@@ -32,6 +34,15 @@ void SPHSolver::_ready() {
     dropper = loader->load("res://Sphere.tscn");
 
     
+}
+
+Array SPHSolver::_create_neighborhood(){
+    Array neighborhood = Array();
+    for(int ind = 0; ind < particles->size(); ind++){
+        Droplet *cur = static_cast<Droplet*>(___get_from_variant(particles->operator[](ind)));
+        neighborhood.append(spat_map->_get_neighbors(cur));
+    }
+    return neighborhood;
 }
 
 void SPHSolver::_process(float delta) {
@@ -46,8 +57,10 @@ void SPHSolver::_process(float delta) {
     for(int ind = 0; ind < particles->size(); ind++){
         Droplet *cur = static_cast<Droplet*>(___get_from_variant(particles->operator[](ind)));
         spat_map->_add_to_grid(cur, ind);
-        spat_map->_get_neighbors(cur);
     }
+    this->neighborhood = this->_create_neighborhood();
+
+    
 }
 
 

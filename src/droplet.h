@@ -30,7 +30,7 @@ namespace godot {
         const float init_density = 1.0f;
         const float volume = powf(radius, 3.0f) * 3.14f * (4.0f/3.0f);
         const float mass = volume * init_density;
-        const float kernel_range = 1.25 * (2 * radius);
+        const float kernel_range = 1.25 * ( radius);
         const float viscosity = 0.3f;
         const float stiffness = 1.5f;
         const float gravity = -9.8f;

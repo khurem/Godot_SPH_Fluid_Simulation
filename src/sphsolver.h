@@ -34,6 +34,7 @@ namespace godot {
         int count = 0;
         Ref<PackedScene> dropper;
         Grid *spat_map;
+        Array neighborhood;
         
 
     public:
@@ -45,6 +46,7 @@ namespace godot {
         void _init(); 
         void _ready();
         void _process(float delta);
+        Array _create_neighborhood();
        
     };
 }
