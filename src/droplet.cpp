@@ -20,7 +20,8 @@ Droplet::~Droplet() {
 
 void Droplet::_init() {
     
-    velocity = 0.0f;
+    velocity = Vector3(0.0f, 0.0f, 0.0f);
+    force = Vector3(0.0f, 0.0f, 0.0f);
     
 
 }
@@ -45,14 +46,14 @@ void Droplet::_ready() {
 }
 
 void Droplet::_process(float delta) {
-    velocity += 0.1 * gravity;
+    // velocity.y += 0.1 * gravity;
     if(this->is_on_floor()){
-        velocity = 0.0f;
+        velocity.y = 0.0f;
     } else{
          
     }
-    Vector3 motion = Vector3(0.0f, velocity, 0.0f);
-         move_and_slide(motion, Vector3(0,1,0));
+    Vector3 motion = velocity;
+        //  move_and_slide(motion, Vector3(0,1,0));
     // Vector3 cur = this->get_global_transform().get_origin();
     // if(!resting){
     //     Vector3 updoot = Vector3(cur.x, cur.y + (velocity * 0.001f), cur.z);
@@ -63,11 +64,11 @@ void Droplet::_process(float delta) {
    
     
     Vector3 pos = this->get_global_transform().get_origin();
-    if(abs(pos.x) > 30 || abs(pos.y) > 130||abs(pos.z) > 30){
+    if(abs(pos.x) > 20 || abs(pos.y) > 130||abs(pos.z) > 20){
         this->set_translation(Vector3(0.0f, 40.0f, 0.0f));
-        velocity = 0.0f;
+        velocity.y = 0.0f;
         // this->queue_free();
-        Godot::print(this->get_global_transform().get_origin());
+        // Godot::print(this->get_global_transform().get_origin());
     }
     
    
