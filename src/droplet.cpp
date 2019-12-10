@@ -47,11 +47,11 @@ void Droplet::_ready() {
 
 void Droplet::_process(float delta) {
     // velocity.y += 0.1 * gravity;
-    if(this->is_on_floor()){
-        velocity.y = 0.0f;
-    } else{
+    // if(this->is_on_floor()){
+    //     velocity.y = 0.0f;
+    // } else{
          
-    }
+    // }
     Vector3 motion = velocity;
         //  move_and_slide(motion, Vector3(0,1,0));
     // Vector3 cur = this->get_global_transform().get_origin();

@@ -74,6 +74,7 @@ void Grid::_add_to_grid(Droplet* new_drop, int idx){
     int indy = int(drop_pos[1] / new_drop->_get_kernel_size());
     int indz = int(drop_pos[2] / new_drop->_get_kernel_size());
     Vector3 indexer = Vector3(indx, indy, indz);
+    // Godot::print(indexer);
     if(!grid->has(indexer)){
         grid->operator[](indexer) = Array();
     }

@@ -8,13 +8,10 @@ class_name = "Droplet"
 library = ExtResource( 1 )
 
 [sub_resource type="SphereShape" id=2]
-radius = 0.5
 
 [sub_resource type="SphereMesh" id=3]
-radius = 0.5
-height = 1.0
 
-[node name="Spatial" type="KinematicBody"]
+[node name="Spatial" type="Area"]
 script = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

@@ -28,14 +28,13 @@ namespace godot {
         GODOT_CLASS(SPHSolver, Spatial)
 
     private:
-        const int max_particles = 2000;
+        const int max_particles = 44;
         const Droplet temp = Droplet();
         const float radius = temp.radius;
         const float kernel_range = temp.kernel_range;
         const float KERNEL_CONST = 315.0 / (64.0 * 3 * (powf(kernel_range, 9)));
-        const float GRAD_KERNEL_CONST = 45.0 / (M_PI * powf(kernel_range, 6));
+        const float GRAD_KERNEL_CONST = 15.0 / (M_PI * powf(kernel_range, 6));
 
-        
         Array *particles;
         float velocity = 0.0f;
         int count = 0;
