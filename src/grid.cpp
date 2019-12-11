@@ -36,8 +36,8 @@ void Grid::_process(float delta) {
    
 }
 
-Array Grid::_get_neighbors(Droplet* center){
-    Vector3 drop_pos = center->get_global_transform().get_origin();
+Array Grid::_get_neighbors(Particle* center){
+    Vector3 drop_pos = center->position;
     
     int indx = int(drop_pos[0] / center->_get_kernel_size());
     int indy = int(drop_pos[1] / center->_get_kernel_size());
@@ -68,8 +68,8 @@ Array Grid::_get_neighbors(Droplet* center){
     return neighbors;
 }
 
-void Grid::_add_to_grid(Droplet* new_drop, int idx){
-    Vector3 drop_pos = new_drop->get_global_transform().get_origin();
+void Grid::_add_to_grid(Particle* new_drop, int idx){
+    Vector3 drop_pos = new_drop->position;
     int indx = int(drop_pos[0] / new_drop->_get_kernel_size());
     int indy = int(drop_pos[1] / new_drop->_get_kernel_size());
     int indz = int(drop_pos[2] / new_drop->_get_kernel_size());

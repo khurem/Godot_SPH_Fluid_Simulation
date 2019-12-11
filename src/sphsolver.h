@@ -15,9 +15,12 @@
 #include <SphereMesh.hpp>
 #include <Spatial.hpp>
 #include "./droplet.h"
+#include "./particle.h"
 #include "./grid.h"
 #include <PackedScene.hpp>
+#include <AABB.hpp>
 #include <ResourceLoader.hpp>
+#include <RandomNumberGenerator.hpp>
 
 namespace godot {
 
@@ -28,15 +31,26 @@ namespace godot {
         GODOT_CLASS(SPHSolver, Spatial)
 
     private:
-        const int max_particles = 44;
-        const Droplet temp = Droplet();
-        const float radius = temp.radius;
-        const float kernel_range = temp.kernel_range;
+    const float width = 2.5;
+    const float height = 1.5;
+    const float depth = 1.5;
+        const float scale = 400;
+        const float render_width = scale * width;
+        const float render_height = scale * height;
+        const int max_particles = 22;
+        const float rest_density = 1.0f;
+        const float stiffness = 1.5f;
+        const float viscosity = 0.5f;
+        const float gravity = 1.2f;
+        const float particle_spacing = 1.0f / max_particles;
+        const float timestep = 0.016;
+        const float particle_volume = particle_spacing * particle_spacing;
+        const float particle_mass = particle_volume * rest_density;
+        const float kernel_range = 1.25f;
         const float KERNEL_CONST = 315.0 / (64.0 * 3 * (powf(kernel_range, 9)));
         const float GRAD_KERNEL_CONST = 15.0 / (M_PI * powf(kernel_range, 6));
 
         Array *particles;
-        float velocity = 0.0f;
         int count = 0;
         Ref<PackedScene> dropper;
         Grid *spat_map;

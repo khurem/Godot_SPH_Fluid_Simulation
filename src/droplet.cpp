@@ -20,8 +20,7 @@ Droplet::~Droplet() {
 
 void Droplet::_init() {
     
-    velocity = Vector3(0.0f, 0.0f, 0.0f);
-    force = Vector3(0.0f, 0.0f, 0.0f);
+    // position = pos;
     
 
 }
@@ -52,7 +51,7 @@ void Droplet::_process(float delta) {
     // } else{
          
     // }
-    Vector3 motion = velocity;
+    // Vector3 motion = velocity;
         //  move_and_slide(motion, Vector3(0,1,0));
     // Vector3 cur = this->get_global_transform().get_origin();
     // if(!resting){
@@ -63,13 +62,13 @@ void Droplet::_process(float delta) {
     // }
    
     
-    Vector3 pos = this->get_global_transform().get_origin();
-    if(abs(pos.x) > 20 || abs(pos.y) > 130||abs(pos.z) > 20){
-        this->set_translation(Vector3(0.0f, 40.0f, 0.0f));
-        velocity.y = 0.0f;
-        // this->queue_free();
-        // Godot::print(this->get_global_transform().get_origin());
-    }
+    // Vector3 pos = this->get_global_transform().get_origin();
+    // if(abs(pos.x) > 20 || abs(pos.y) > 130||abs(pos.z) > 20){
+    //     this->set_translation(Vector3(0.0f, 40.0f, 0.0f));
+    //     velocity.y = 0.0f;
+    //     // this->queue_free();
+    //     // Godot::print(this->get_global_transform().get_origin());
+    // }
     
    
     
@@ -77,7 +76,7 @@ void Droplet::_process(float delta) {
 }
 
 float Droplet::_get_kernel_size(){
-    return kernel_range;
+    return max_dist;
 }
 
 // void Droplet::_on_body_entered(Node *body){

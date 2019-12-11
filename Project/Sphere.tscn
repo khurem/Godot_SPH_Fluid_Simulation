@@ -11,7 +11,7 @@ library = ExtResource( 1 )
 
 [sub_resource type="SphereMesh" id=3]
 
-[node name="Spatial" type="Area"]
+[node name="Spatial" type="KinematicBody"]
 script = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

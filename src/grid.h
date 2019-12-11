@@ -17,7 +17,7 @@
 #include <KinematicBody.hpp>
 #include <KinematicCollision.hpp>
 #include <Dictionary.hpp>
-#include "droplet.h"
+#include "./particle.h"
 
 namespace godot {
 
@@ -40,9 +40,9 @@ namespace godot {
         void _init(); // our initializer called by Godot
         void _ready();
         void _process(float delta);
-        void _add_to_grid(Droplet* new_drop, int idx);
+        void _add_to_grid(Particle* new_drop, int idx);
         void _reset_grid();
-        Array _get_neighbors(Droplet* center);
+        Array _get_neighbors(Particle* center);
        
     };
 }
