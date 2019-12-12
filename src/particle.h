@@ -44,7 +44,7 @@ namespace godot {
         const float timestep = 0.016;
         const float particle_volume = particle_spacing * particle_spacing;
         const float particle_mass = particle_volume * rest_density;
-        const float kernel_range =  2 * particle_spacing;
+        const float kernel_range =  1.6 * particle_spacing;
         const float KERNEL_CONST = 315.0 / (64.0 * 3 * (powf(kernel_range, 9)));
         const float GRAD_KERNEL_CONST = 15.0 / (M_PI * powf(kernel_range, 6));
         const float viscosity_const = 0.3f;

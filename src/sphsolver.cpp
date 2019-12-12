@@ -33,19 +33,19 @@ void SPHSolver::_init() {
     neighborhood = Array();
 
     
-    Vector3 _particles = Vector3(max_particles /4, max_particles/2, max_particles/2);
+    Vector3 _particles = Vector3(max_particles /4, max_particles/2, max_particles/4);
     float num_particles = _particles.x * _particles.y * _particles.z;
     float s_width = width / 2.0f;
     float s_height = 3.0f * height / 4.0f;
-    float s_depth = depth / 2.0f;
-    AABB *particle_box = new AABB(Vector3((width - s_width) , height - s_height, (depth-s_depth)), Vector3(s_width, s_height, s_depth));
+    float s_depth = depth;
+    AABB *particle_box = new AABB(Vector3((width - s_width) * 2.0f, height - s_height, (depth-s_depth) * 2.0f), Vector3(s_width, s_height, s_depth));
     RandomNumberGenerator *rando = RandomNumberGenerator::_new();
     Vector3 q = particle_box->size / _particles;
     for(int i = 0; i < _particles.x; i++){
         for(int j =0; j < _particles.y; j++){
             for(int k = 0; k < _particles.z; k++){
                 
-                Vector3 posit = Vector3(i, j, k) * q + Vector3(0.0f, 0.35f, 0.0f);
+                Vector3 posit = Vector3(i, j, k) * q + Vector3(0.0f, 0.5f, 0.0f);
                 posit.x += rando->randf_range(-0.001f, 0.001f);
                 posit.y += rando->randf_range(-0.001f, 0.001f);
                 posit.z += rando->randf_range(-0.001f, 0.001f);
@@ -233,10 +233,10 @@ void SPHSolver::_calculate_force_pressure(){
         temp_gravity = cur->particle_mass * Vector3(0, cur->gravity, 0);
         temp_pressure *= -1;
         temp_viscosity *= cur->viscosity_const;
-        Godot::print("grav, pressure, visc");
-        Godot::print(temp_gravity);
-        Godot::print(temp_pressure);
-        Godot::print(temp_viscosity);
+        // Godot::print("grav, pressure, visc");
+        // Godot::print(temp_gravity);
+        // Godot::print(temp_pressure);
+        // Godot::print(temp_viscosity);
         cur->viscosity = temp_viscosity.length();
         cur->force += temp_pressure + temp_viscosity + temp_gravity;
         // Godot::print(cur->force);

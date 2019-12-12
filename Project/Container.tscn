@@ -14,27 +14,29 @@ material = SubResource( 2 )
 [node name="Box" type="Spatial"]
 
 [node name="Floor" type="StaticBody" parent="."]
-transform = Transform( 10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0.1, 0 )
+transform = Transform( 5.2, 0, 0, 0, 0.1, 0, 0, 0, 10, -0.7, -0.5, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 200, 0 )
 mesh = SubResource( 3 )
 material/0 = null
 
 [node name="NegXWall" type="StaticBody" parent="."]
-transform = Transform( -0.1, 0, 0, 0, -10, -8.74228e-07, 0, -8.74228e-07, 10, -10, 10, 0 )
+transform = Transform( -0.1, 0, 0, 0, -10, -8.74228e-07, 0, -8.74228e-07, 10, -7.5, 10, 0.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="NegXWall"]
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="NegXWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = null
 
 [node name="PosXWall" type="StaticBody" parent="."]
-transform = Transform( -0.1, 0, 0, 0, -10, -8.74228e-07, 0, -8.74228e-07, 10, 10, 10, 0 )
+transform = Transform( -0.1, 0, 0, 0, -10, -8.74228e-07, 0, -8.74228e-07, 10, 8, 10, 0.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="PosXWall"]
 shape = SubResource( 1 )
@@ -44,7 +46,7 @@ mesh = SubResource( 3 )
 material/0 = null
 
 [node name="NegZWall" type="StaticBody" parent="."]
-transform = Transform( -10, 8.74228e-07, 0, -8.74228e-07, -10, -8.74228e-09, -7.64274e-14, -8.74228e-07, 0.1, 0, 10, -10 )
+transform = Transform( -5.6, 1.50996e-06, 6.59982e-22, -8.45576e-07, -10, -8.74228e-09, -7.39226e-14, -8.74228e-07, 0.1, 2.2, 10, -9.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="NegZWall"]
 shape = SubResource( 1 )
@@ -54,9 +56,10 @@ mesh = SubResource( 3 )
 material/0 = null
 
 [node name="PosZWall" type="StaticBody" parent="."]
-transform = Transform( -10, 8.74228e-07, 0, -8.74228e-07, -10, -8.74228e-09, -7.64274e-14, -8.74228e-07, 0.1, 0, 10, 10 )
+transform = Transform( -5.6, 1.50996e-06, 6.59982e-22, -8.45576e-07, -10, -8.74228e-09, -7.39226e-14, -8.74228e-07, 0.1, 2.25, 10, 10.5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="PosZWall"]
+transform = Transform( 1, 6.6815e-22, 6.61744e-24, 6.6815e-22, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="PosZWall"]

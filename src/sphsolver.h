@@ -40,7 +40,7 @@ namespace godot {
 
         const float render_width = scale * width;
         const float render_height = scale * height;
-        const int max_particles = 25;
+        const int max_particles = 35;
         const float rest_density = 1.0f;
         const float stiffness = 1.5f;
         const float viscosity = 0.3f;
@@ -49,7 +49,7 @@ namespace godot {
         const float timestep = 0.016;
         const float particle_volume = particle_spacing * particle_spacing;
         const float particle_mass = particle_volume * rest_density;
-         const float kernel_range = 3.0 * particle_spacing;
+         const float kernel_range = 3.5 * particle_spacing;
         const float KERNEL_CONST = 360.0 / (64.0 * 3 * (powf(kernel_range, 9)));
         const float GRAD_KERNEL_CONST = 15.0 / (M_PI * powf(kernel_range, 6));
 

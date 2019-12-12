@@ -35,10 +35,11 @@ void Main::_init() {
 }
 
 void Main::_ready() {
-      view = static_cast<Viewport*>(this->get_child(0)->get_child(0));
+      view = static_cast<Viewport*>(this->get_child(1)->get_child(0));
     // Godot::print(this->get_child(0)->get_class());
-      Vector2 sez = 400 * Vector2(3, 4.5);
+      Vector2 sez = 400 * Vector2(3, 1.5);
       view->set_size(sez);
+      
       
     //   this->get_parent();
     //   Godot::print(this->get_parent()->get_parent()->get_class());
@@ -52,8 +53,8 @@ void Main::_ready() {
          Particle *cur = static_cast<Particle*>(___get_from_variant(sph->particles->operator[](p)));
         Spatial* part_draw = static_cast<Spatial *>(text->instance());
         // part_draw->add_child(part_mesh);
-        // Godot::print(cur->position * scale);
-        this->add_child(part_draw);
+        Godot::print(cur->position * scale);
+        view->add_child(part_draw);
         part_draw->set_translation(cur->position * scale);
         // Godot::print("And then");
         // Godot::print(part_draw->get_global_transform().get_origin());
@@ -64,11 +65,11 @@ void Main::_ready() {
 
 
     }
-    printf("doifsojpdof %d \n",this->get_child_count());    
+    printf("doifsojpdof %d \n",view->get_child_count());    
 }
 
 void Main::_process(float delta) {
-    if(start < 10){
+    if(start < 300){
         start ++;
         sph->_process(0.05);
     }else{
@@ -76,7 +77,7 @@ void Main::_process(float delta) {
     }
     
     for(int p = 0; p < sph->particles->size(); p++){
-        Spatial* cur = static_cast<Spatial*>(this->get_child(p + 3 ));
+        Spatial* cur = static_cast<Spatial*>(view->get_child(p + 1 ));
         Particle* mirror = static_cast<Particle*>(___get_from_variant(sph->particles->operator[](p)));
        
         Vector3 loc = (1 - reset) * cur->get_global_transform().get_origin() + reset * (mirror->position * scale);
