@@ -1,4 +1,4 @@
-shader_type canvas_item;
+shader_type spatial;
 render_mode skip_vertex_transform;
 
 uniform sampler2D color_ramp;

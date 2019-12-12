@@ -42,7 +42,7 @@ namespace godot {
         void _process(float delta);
         void _add_to_grid(Particle* new_drop, int idx);
         void _reset_grid();
-        Array _get_neighbors(Particle* center);
+        Array _get_neighbors(Particle* center, Array* particles);
        
     };
 }

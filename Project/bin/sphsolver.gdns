@@ -4,5 +4,4 @@
 
 [resource]
 resource_name = "sphsolver"
-class_name = "SPHSolver"
 library = ExtResource( 1 )

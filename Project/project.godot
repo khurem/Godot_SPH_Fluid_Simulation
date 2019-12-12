@@ -19,6 +19,11 @@ config/name="Project"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1458
+window/size/height=1034
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

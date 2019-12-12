@@ -36,7 +36,7 @@ void Grid::_process(float delta) {
    
 }
 
-Array Grid::_get_neighbors(Particle* center){
+Array Grid::_get_neighbors(Particle* center, Array* particles){
     Vector3 drop_pos = center->position;
     
     int indx = int(drop_pos[0] / center->_get_kernel_size());
@@ -53,15 +53,29 @@ Array Grid::_get_neighbors(Particle* center){
                 Array temp = static_cast<Array>(grid->operator[](neighbor));
                 if(grid->has(neighbor) and temp.size() > 0){
                     // Godot::print("testestest");
+                    //TODO ADD MAX NEIGHBOR LIMIT
+                    for(int r = 0; r < temp.size(); r++){
+                        if(neighbors.size() <= center->max_neighbors){
+                        int index = temp.operator[](r).operator unsigned int();
+                        Particle *bor = static_cast<Particle*>(___get_from_variant(particles->operator[](index)));
+                        // Godot::print(bor->position);
+                        float dist = center->position.distance_squared_to(bor->position);
+                        if(dist <= center->max_dist){
+                            // printf("grid comp is %f %f \n", dist, center->max_dist);
+                            neighbors.append(temp.operator[](r).operator unsigned int());
+                        }
+                            
+                        } else{
+                            break;
+                        }
+                    }
                     // printf("Size of temp is %d \n", temp.size());
-                    neighbors.append(temp);
-                } else{
-                    // printf("I have nothing at %d %d %d\n", x + indx, y + indy, z + indz);
-                }
+                    // neighbors.append(temp);
+                } 
             }
         }
     }
-    // if(neighbors.size() > 27){
+    // if(neighbors.size() > 0){
     //     printf("the size of my friends %d\n", neighbors.size());
     // }
     

@@ -77,7 +77,7 @@ void Particle::_process(float delta) {
 }
 
 float Particle::_get_kernel_size(){
-    return max_dist;
+    return kernel_range;
 }
 
 // void Droplet::_on_body_entered(Node *body){
